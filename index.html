@@ -41,7 +41,7 @@
                 <input type="text" name="data[COLABORADOR]" class="form_input" autocomplete="off" required="">
                 
                 <label for="data[CARGO]"> Cargo</label>
-                <select id="data[CARGO]" name="data[CARGO]" class="form_select" form="sheetdb-form" autocomplete="off" required="">
+                <select id="data[CARGO]" name="data[CARGO]" class="form_select" form="sheetdb-form" autocomplete="off">
                     <option disabled selected> </option>
                     <option value="Atendente">Atendente</option>
                     <option value="Vendedor">Vendedor</option>
@@ -51,16 +51,16 @@
                 </select>
                 
                 <label> CNPJ</label>
-                <input type="text" id="data[CNPJ]" name="data[CNPJ]" class="form_input" autocomplete="off" required="" maxlength="18" onkeypress="mascara_cnpj()">
+                <input type="text" id="data[CNPJ]" name="data[CNPJ]" class="form_input" autocomplete="off" maxlength="18" onkeypress="mascara_cnpj()">
                 
                 <label> Telefone</label>
-                <input type="text" id="data[TELEFONE]" name="data[TELEFONE]" class="form_input" autocomplete="off" required="" maxlength="16" onkeypress="mascara_telefone()">
+                <input type="text" id="data[TELEFONE]" name="data[TELEFONE]" class="form_input" autocomplete="off" maxlength="16" onkeypress="mascara_telefone()">
                 
                 <label> E-mail</label>
-                <input type="text" name="data[E-MAIL]" class="form_input" autocomplete="off" required="">
+                <input type="text" name="data[E-MAIL]" class="form_input" autocomplete="off" >
                 
                 <label> Observações</label>
-                <input id="obs" type="text" name="data[OBSERVAÇÕES]" class="form_input" autocomplete="off" required="">
+                <input id="obs" type="text" name="data[OBSERVAÇÕES]" class="form_input" autocomplete="off" >
 
                 <div style="display:flex; align-items: center; justify-content: space-between;">
                     <button type="submit" class="_form_input_submit">
