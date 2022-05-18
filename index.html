@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Cadastro de Contato</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img style="width: 300px; margin: auto;" src="logo-impacto.png" alt="logo IMPACTO">
+
+        <div class="_form_container" id="_form_container">
+            <form id="sheetdb-form" class="_form" method="POST" action="https://sheetdb.io/api/v1/lliugjikkx68m" onsubmit="setTimeout(function(){window.location.reload();},1500);">
+                <h1>Cadastro de Contato</h1>
+                <input type="text" name="data[DATA DE CONTATO]" style="visibility: hidden;" id="NOW()">
+                <br>
+                
+                <label for="data[STATUS]"> Status de Atendimento</label>
+                <select id="data[STATUS]" name="data[STATUS]" class="form_select" form="sheetdb-form" autocomplete="off" required="">
+                    <option disabled selected> </option>
+                    <option value="Contato Pendente">Contato Pendente</option>
+                    <option value="Contato Infrutífero">Contato Infrutífero</option>
+                    <option value="Captado">Captado</option>
+                    <option value="Recorrente">Recorrente</option>
+                    <option value="Outro">Outro</option>
+                </select>
+
+                <label> Empresa</label>
+                <input type="text" name="data[EMPRESA]" class="form_input" autocomplete="off" required="">
+                
+                <label> Colaborador</label>
+                <input type="text" name="data[COLABORADOR]" class="form_input" autocomplete="off" required="">
+                
+                <label for="data[CARGO]"> Cargo</label>
+                <select id="data[CARGO]" name="data[CARGO]" class="form_select" form="sheetdb-form" autocomplete="off" required="">
+                    <option disabled selected> </option>
+                    <option value="Atendente">Atendente</option>
+                    <option value="Vendedor">Vendedor</option>
+                    <option value="Gerente">Gerente</option>
+                    <option value="Sócio">Sócio</option>
+                    <option value="Proprietário">Proprietário</option>
+                </select>
+                
+                <label> CNPJ</label>
+                <input type="text" id="data[CNPJ]" name="data[CNPJ]" class="form_input" autocomplete="off" required="" maxlength="18" onkeypress="mascara_cnpj()">
+                
+                <label> Telefone</label>
+                <input type="text" id="data[TELEFONE]" name="data[TELEFONE]" class="form_input" autocomplete="off" required="" maxlength="16" onkeypress="mascara_telefone()">
+                
+                <label> E-mail</label>
+                <input type="text" name="data[E-MAIL]" class="form_input" autocomplete="off" required="">
+                
+                <label> Observações</label>
+                <input id="obs" type="text" name="data[OBSERVAÇÕES]" class="form_input" autocomplete="off" required="">
+
+                <div style="display:flex; align-items: center; justify-content: space-between;">
+                    <button type="submit" class="_form_input_submit">
+                        Registrar
+                    </button>
+                    <a class="_form_input_submit" style="text-align: center;" href="contatos.html">
+                        Contatos
+                    </a>
+                </div>
+            </form>
+
+            <div id="snippet_thank_you" style="display: none;">
+                Contato Cadastrado com Sucesso!
+            </div>
+
+            <div id="snippet_error" style="display: none;">
+                <h2>Algo deu errado. Entre em contato com o Suporte.</h2>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- data atual -->
+<script>
+var data = new Date();
+
+var dia = data.getDate();
+var mes = data.getMonth() + 1;
+var ano = data.getFullYear();
+
+if (mes < 10) mes = "0" + mes;
+if (dia < 10) dia = "0" + dia;
+
+var hoje = dia + "/" + mes + "/" + ano;       
+document.getElementById("NOW()").value = hoje;
+</script>
+
+<!-- insert da planilha -->
+<script>
+    var form = document.getElementById('sheetdb-form');
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(form.action, {
+          method : "POST",
+          body: new FormData(document.getElementById("sheetdb-form")),
+      }).then(
+          response => response.json()
+      ).then((html) => {
+        alert('Contato Registrado com Sucesso!')
+      });
+    });
+  </script>
+  
+    
+  <!-- Máscara CNPJ -->
+<script>
+  function mascara_cnpj() {
+      var CNPJ = document.getElementById('data[CNPJ]')
+      if(CNPJ.value.length == 2) {
+          CNPJ.value += "."
+      }else if(CNPJ.value.length == 6) {
+          CNPJ.value += "."
+      }else if(CNPJ.value.length == 10) {
+          CNPJ.value += "/"
+      }else if(CNPJ.value.length == 15) {
+          CNPJ.value += "-"
+      }
+    }
+</script>
+
+<!-- Máscara Telefone -->
+<script>
+    function mascara_telefone() {
+        var tel = document.getElementById('data[TELEFONE]')
+        if(tel.value.length == 0) {
+            tel.value += "("
+        }else if(tel.value.length == 3) {
+            tel.value += ") "
+        }else if(tel.value.length == 6) {
+            tel.value += " "
+        }else if(tel.value.length == 11) {
+            tel.value += "-"
+        }
+    }
+  </script>
+
+</html>
